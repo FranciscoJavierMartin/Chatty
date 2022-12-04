@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Login from '../login/Login';
 import './AuthTabs.scss';
 import backgroundImage from '../../../assets/images/background.jpg';
+import Register from '../register/Register';
 
 export default function AuthTabs(): JSX.Element {
   const [type, setType] = useState<'Sign In' | 'Sign Up'>('Sign In');
@@ -35,7 +36,9 @@ export default function AuthTabs(): JSX.Element {
                   <Login />
                 </div>
               ) : (
-                <div className='tab-item'>register component</div>
+                <div className='tab-item'>
+                  <Register />
+                </div>
               )}
             </div>
           </div>

@@ -1,9 +1,9 @@
 import { FaArrowRight } from 'react-icons/fa';
 import Button from '../../../components/button/Button';
 import Input from '../../../components/input/Input';
-import './Login.scss';
+import './Register.scss';
 
-export default function Login(): JSX.Element {
+export default function Register(): JSX.Element {
   return (
     <div className='auth-inner'>
       <div className='alerts alert-success' role='alert'>
@@ -20,6 +20,14 @@ export default function Login(): JSX.Element {
             label='Username'
           />
           <Input
+            id='email'
+            name='email'
+            type='email'
+            value=''
+            placeholder='Email'
+            label='Email'
+          />
+          <Input
             id='password'
             name='password'
             type='password'
@@ -32,7 +40,11 @@ export default function Login(): JSX.Element {
             Keep me signed in
           </label>
         </div>
-        <Button label='Login' className='auth-button button' disabled={false} />
+        <Button
+          label='Register'
+          className='auth-button button'
+          disabled={false}
+        />
 
         <span className='forgot-password'>
           Forgot password? <FaArrowRight />
