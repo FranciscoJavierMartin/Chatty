@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import Button from '../../../components/button/Button';
 import Input from '../../../components/input/Input';
@@ -34,9 +35,11 @@ export default function Login(): JSX.Element {
         </div>
         <Button label='Login' className='auth-button button' disabled={false} />
 
-        <span className='forgot-password'>
-          Forgot password? <FaArrowRight />
-        </span>
+        <Link to='/forgot-password'>
+          <span className='forgot-password'>
+            Forgot password? <FaArrowRight />
+          </span>
+        </Link>
       </form>
     </div>
   );
