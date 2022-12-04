@@ -2,6 +2,7 @@ import { ChangeEventHandler, HTMLInputTypeAttribute } from 'react';
 import './Input.scss';
 
 interface InputProps {
+  id: string;
   name: string;
   type: HTMLInputTypeAttribute;
   value: string;
@@ -12,6 +13,7 @@ interface InputProps {
 }
 
 export default function Input({
+  id,
   name,
   type,
   value,
@@ -28,6 +30,7 @@ export default function Input({
         </label>
       )}
       <input
+        id={id}
         name={name}
         type={type}
         value={value}

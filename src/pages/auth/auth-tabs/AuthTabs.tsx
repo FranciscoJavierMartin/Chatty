@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import Login from '../login/Login';
 import './AuthTabs.scss';
 import backgroundImage from '../../../assets/images/background.jpg';
-import Login from '../login/Login';
 
 export default function AuthTabs(): JSX.Element {
   const [type, setType] = useState<'Sign In' | 'Sign Up'>('Sign In');
@@ -17,10 +17,16 @@ export default function AuthTabs(): JSX.Element {
           <div className='tabs'>
             <div className='tabs-auth'>
               <ul className='tab-group'>
-                <li className='tab active' onClick={() => setType('Sign In')}>
+                <li
+                  className={`tab ${type === 'Sign In' ? 'active' : ''}`}
+                  onClick={() => setType('Sign In')}
+                >
                   <button className='login'>Sign In</button>
                 </li>
-                <li className='tab' onClick={() => setType('Sign Up')}>
+                <li
+                  className={`tab ${type === 'Sign Up' ? 'active' : ''}`}
+                  onClick={() => setType('Sign Up')}
+                >
                   <button className='signup'>Sign Up</button>
                 </li>
               </ul>
