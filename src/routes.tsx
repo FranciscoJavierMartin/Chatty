@@ -1,4 +1,4 @@
-import React, { JSXElementConstructor, ReactElement } from 'react';
+import { JSXElementConstructor, ReactElement } from 'react';
 import { useRoutes } from 'react-router-dom';
 import AuthTabs from './pages/auth/auth-tabs/AuthTabs';
 
