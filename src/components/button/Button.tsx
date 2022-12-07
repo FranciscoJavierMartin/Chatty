@@ -5,6 +5,7 @@ interface ButtonProps {
   className: string;
   disabled: boolean;
   handleClick: MouseEventHandler<HTMLButtonElement>;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export default function Button({
@@ -12,9 +13,15 @@ export default function Button({
   className,
   disabled,
   handleClick,
+  type = 'button',
 }: ButtonProps): JSX.Element {
   return (
-    <button className={className} onClick={handleClick} disabled={disabled}>
+    <button
+      type={type}
+      className={className}
+      onClick={handleClick}
+      disabled={disabled}
+    >
       {label}
     </button>
   );
