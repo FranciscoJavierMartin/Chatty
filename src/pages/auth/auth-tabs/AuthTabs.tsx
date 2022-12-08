@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Login from '../login/Login';
+import Login from '@/pages/auth/login/Login';
+import Register from '@/pages/auth/register/Register';
+import backgroundImage from '@/assets/images/background.jpg';
 import './AuthTabs.scss';
-import backgroundImage from '../../../assets/images/background.jpg';
-import Register from '../register/Register';
 
 export default function AuthTabs(): JSX.Element {
   const [type, setType] = useState<'Sign In' | 'Sign Up'>('Sign In');

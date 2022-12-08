@@ -1,11 +1,11 @@
 import { FormEvent, FormEventHandler, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link, useSearchParams } from 'react-router-dom';
-import Button from '../../../components/button/Button';
-import Input from '../../../components/input/Input';
-import backgroundImage from '../../../assets/images/background.jpg';
+import { authService } from '@/services/api/auth/auth.service';
+import Button from '@/components/button/Button';
+import Input from '@/components/input/Input';
+import backgroundImage from '@/assets/images/background.jpg';
 import './ResetPassword.scss';
-import { authService } from '../../../services/api/auth/auth.service';
 
 export default function ResetPassword(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,7 +28,6 @@ export default function ResetPassword(): JSX.Element {
         searchParams.get('token')!,
       );
       console.log(result);
-      setEmail('');
       setShowAlert(false);
       setAlertType('alert-success');
       setResponseMessage(result.data?.message);
@@ -91,7 +90,6 @@ export default function ResetPassword(): JSX.Element {
                     label='RESET PASSWORD'
                     className='auth-button button'
                     disabled={isLoading && !confirmPassword && !password}
-                    handleClick={() => {}}
                   />
 
                   <Link to={'/'}>

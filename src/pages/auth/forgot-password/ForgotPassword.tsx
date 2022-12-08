@@ -1,10 +1,10 @@
 import { FormEvent, FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import Input from '../../../components/input/Input';
-import Button from '../../../components/button/Button';
+import Input from '@/components/input/Input';
+import Button from '@/components/button/Button';
+import { authService } from '@/services/api/auth/auth.service';
 import './ForgotPassword.scss';
-import { authService } from '../../../services/api/auth/auth.service';
 
 export default function ForgotPassword(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -73,7 +73,6 @@ export default function ForgotPassword(): JSX.Element {
                     label='Sign In'
                     className='auth-button button'
                     disabled={isLoading || !email}
-                    handleClick={() => {}}
                   />
                   <Link to='/'>
                     <span className='forgot-password'>

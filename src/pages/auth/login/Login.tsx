@@ -1,10 +1,10 @@
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import Button from '../../../components/button/Button';
-import Input from '../../../components/input/Input';
+import { authService } from '@/services/api/auth/auth.service';
+import Button from '@/components/button/Button';
+import Input from '@/components/input/Input';
 import './Login.scss';
-import { authService } from '../../../services/api/auth/auth.service';
 
 export default function Login(): JSX.Element {
   const [username, setUsername] = useState<string>('');
