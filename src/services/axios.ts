@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_APP_BASE_ENDPOINT;
-
 export default axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_APP_BASE_ENDPOINT,
   headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
   withCredentials: true,
 });

@@ -1,9 +1,9 @@
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
-import Button from '../../../components/button/Button';
-import Input from '../../../components/input/Input';
-import { authService } from '../../../services/api/auth/auth.service';
-import { Utils } from '../../../services/utils/utils.service';
+import Button from '@/components/button/Button';
+import Input from '@/components/input/Input';
+import { authService } from '@/services/api/auth/auth.service';
+import { Utils } from '@/services/utils/utils.service';
 import './Register.scss';
 
 export default function Register(): JSX.Element {
@@ -101,9 +101,7 @@ export default function Register(): JSX.Element {
           label={isLoading ? 'Loading' : 'Register'}
           className='auth-button button'
           disabled={isLoading || !username || !email || !password}
-          handleClick={() => {}}
         />
-
         <span className='forgot-password'>
           Forgot password? <FaArrowRight />
         </span>

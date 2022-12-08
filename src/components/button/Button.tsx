@@ -4,7 +4,7 @@ interface ButtonProps {
   label: string | JSX.Element;
   className: string;
   disabled: boolean;
-  handleClick: MouseEventHandler<HTMLButtonElement>;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
   type?: 'button' | 'submit' | 'reset';
 }
 
