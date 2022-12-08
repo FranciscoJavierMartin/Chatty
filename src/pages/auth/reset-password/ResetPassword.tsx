@@ -1,11 +1,46 @@
+import { FormEvent, FormEventHandler, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Button from '../../../components/button/Button';
 import Input from '../../../components/input/Input';
 import backgroundImage from '../../../assets/images/background.jpg';
 import './ResetPassword.scss';
+import { authService } from '../../../services/api/auth/auth.service';
 
 export default function ResetPassword(): JSX.Element {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [alertType, setAlertType] = useState<string>('');
+  const [responseMessage, setResponseMessage] = useState<string>('');
+  const [searchParams] = useSearchParams();
+
+  const resetPasswordUser: FormEventHandler<HTMLFormElement> = async (
+    event: FormEvent,
+  ) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const result = await authService.resetPassword(
+        searchParams.get('token')!,
+      );
+      console.log(result);
+      setEmail('');
+      setShowAlert(false);
+      setAlertType('alert-success');
+      setResponseMessage(result.data?.message);
+    } catch (error: any) {
+      setResponseMessage(error?.response.data?.message);
+      setAlertType('alert-error');
+      setShowAlert(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div
       className='container-wrapper'
@@ -27,7 +62,10 @@ export default function ResetPassword(): JSX.Element {
                 <div className='alerts' role='alert'>
                   Error message
                 </div>
-                <form className='reset-password-form'>
+                <form
+                  className='reset-password-form'
+                  onSubmit={resetPasswordUser}
+                >
                   <div className='form-input-container'>
                     <Input
                       id='password'
@@ -36,7 +74,7 @@ export default function ResetPassword(): JSX.Element {
                       value={password}
                       label='New Password'
                       placeholder='New Password'
-                      handleChange={() => {}}
+                      handleChange={(e) => setPassword(e.target.value)}
                     />
                     <Input
                       id='cpassword'
@@ -45,13 +83,15 @@ export default function ResetPassword(): JSX.Element {
                       value={confirmPassword}
                       label='Confirm Password'
                       placeholder='Confirm Password'
-                      handleChange={() => {}}
+                      handleChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>
                   <Button
+                    type='submit'
                     label='RESET PASSWORD'
                     className='auth-button button'
-                    disabled={false}
+                    disabled={isLoading && !confirmPassword && !password}
+                    handleClick={() => {}}
                   />
 
                   <Link to={'/'}>

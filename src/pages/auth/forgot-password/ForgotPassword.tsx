@@ -1,9 +1,9 @@
+import { FormEvent, FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import Input from '../../../components/input/Input';
 import Button from '../../../components/button/Button';
 import './ForgotPassword.scss';
-import { FormEvent, FormEventHandler, useState } from 'react';
 import { authService } from '../../../services/api/auth/auth.service';
 
 export default function ForgotPassword(): JSX.Element {
