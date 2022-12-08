@@ -27,7 +27,7 @@ export default function Register(): JSX.Element {
     event: FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
 
     try {
       const avatarColor = Utils.getRamdomAvatarColor();

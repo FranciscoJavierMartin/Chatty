@@ -27,7 +27,7 @@ export default function Login(): JSX.Element {
     event: FormEvent,
   ) => {
     event.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
 
     try {
       const result = await authService.singIn({
