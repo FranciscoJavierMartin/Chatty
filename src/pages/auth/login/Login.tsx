@@ -1,5 +1,5 @@
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import { authService } from '@/services/api/auth/auth.service';
 import Button from '@/components/button/Button';
@@ -15,13 +15,15 @@ export default function Login(): JSX.Element {
   const [alertType, setAlertType] = useState<string>('');
   const [hasError, setHasError] = useState<boolean>(false);
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoading && !user) {
     } else if (user) {
       setIsLoading(false);
+      navigate('/app/social/streams');
     }
-  }, [isLoading, user]);
+  }, [isLoading, user, navigate]);
 
   const loginUser: FormEventHandler<HTMLFormElement> = async (
     event: FormEvent,

@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import AuthTabs from '@/pages/auth/auth-tabs/AuthTabs';
 import ForgotPassword from '@/pages/auth/forgot-password/ForgotPassword';
 import ResetPassword from '@/pages/auth/reset-password/ResetPassword';
+import Streams from '@/pages/social/streams/Streams';
 
 export default function AppRouter(): ReactElement<
   any,
@@ -20,6 +21,10 @@ export default function AppRouter(): ReactElement<
     {
       path: '/reset-password',
       element: <ResetPassword />,
+    },
+    {
+      path: '/app/social/streams',
+      element: <Streams />,
     },
   ]);
 

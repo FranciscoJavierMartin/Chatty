@@ -1,4 +1,5 @@
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import Button from '@/components/button/Button';
 import Input from '@/components/input/Input';
@@ -15,13 +16,15 @@ export default function Register(): JSX.Element {
   const [alertType, setAlertType] = useState<string>('');
   const [hasError, setHasError] = useState<boolean>(false);
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoading && !user) {
     } else if (user) {
       setIsLoading(false);
+      navigate('/app/social/streams');
     }
-  }, [isLoading, user]);
+  }, [isLoading, user, navigate]);
 
   const registerUser: FormEventHandler<HTMLFormElement> = async (
     event: FormEvent<HTMLFormElement>,
