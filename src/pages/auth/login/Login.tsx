@@ -86,11 +86,11 @@ export default function Login(): JSX.Element {
           </label>
         </div>
         <Button
+          type='submit'
           label='Login'
           className='auth-button button'
           disabled={!username || !password}
         />
-
         <Link to='/forgot-password'>
           <span className='forgot-password'>
             Forgot password? <FaArrowRight />
