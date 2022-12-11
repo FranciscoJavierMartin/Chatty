@@ -1,3 +1,4 @@
+import { addUser } from '@/redux-toolkit/reducers/user/user.reducer';
 import { avatarColors } from '@/services/utils/static.data';
 
 export class Utils {
@@ -27,6 +28,17 @@ export class Utils {
       context.fillText(text, canvas.width / 2, canvas.height / 2);
     }
 
-    return canvas.toDataURL('base64');
+    return canvas.toDataURL('image/png');
+  }
+
+  static dispatchUser(
+    result: any,
+    pageReload: (reload: boolean) => void,
+    dispatch: Function,
+    setUser: any,
+  ) {
+    pageReload(true);
+    dispatch(addUser({ token: result.data.token, profile: result.data.user }));
+    setUser(result.data.user);
   }
 }

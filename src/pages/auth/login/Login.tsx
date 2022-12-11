@@ -1,11 +1,14 @@
 import { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FaArrowRight } from 'react-icons/fa';
 import { authService } from '@/services/api/auth/auth.service';
 import Button from '@/components/button/Button';
 import Input from '@/components/input/Input';
 import './Login.scss';
 import useLocalStorage from '@/hooks/useLocalStorage';
+import { Utils } from '@/services/utils/utils.service';
+import useSessionStorage from '@/hooks/useSessionStorage';
 
 export default function Login(): JSX.Element {
   const [username, setUsername] = useState<string>('');
@@ -19,6 +22,8 @@ export default function Login(): JSX.Element {
   const navigate = useNavigate();
   const [setStoreUsername] = useLocalStorage('username', 'set');
   const [setLoggedIn] = useLocalStorage('keepLoggedin', 'set');
+  const [pageReload] = useSessionStorage('pageReload', 'set');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLoading && !user) {
@@ -42,9 +47,9 @@ export default function Login(): JSX.Element {
 
       setLoggedIn(true);
       setStoreUsername(username);
-      setUser(result.data.user);
       setHasError(false);
       setAlertType('alert-success');
+      Utils.dispatchUser(result, pageReload, dispatch, setUser);
     } catch (error: any) {
       setErrorMessage(error?.response?.data.message);
       setHasError(true);
