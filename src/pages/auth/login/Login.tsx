@@ -5,6 +5,7 @@ import { authService } from '@/services/api/auth/auth.service';
 import Button from '@/components/button/Button';
 import Input from '@/components/input/Input';
 import './Login.scss';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 export default function Login(): JSX.Element {
   const [username, setUsername] = useState<string>('');
@@ -16,6 +17,8 @@ export default function Login(): JSX.Element {
   const [hasError, setHasError] = useState<boolean>(false);
   const [user, setUser] = useState();
   const navigate = useNavigate();
+  const [setStoreUsername] = useLocalStorage('username', 'set');
+  const [setLoggedIn] = useLocalStorage('keepLoggedin', 'set');
 
   useEffect(() => {
     if (isLoading && !user) {
@@ -36,7 +39,9 @@ export default function Login(): JSX.Element {
         username,
         password,
       });
-      console.log(result);
+
+      setLoggedIn(true);
+      setStoreUsername(username);
       setUser(result.data.user);
       setHasError(false);
       setAlertType('alert-success');

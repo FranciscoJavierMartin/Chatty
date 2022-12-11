@@ -6,6 +6,7 @@ import Input from '@/components/input/Input';
 import { authService } from '@/services/api/auth/auth.service';
 import { Utils } from '@/services/utils/utils.service';
 import './Register.scss';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 export default function Register(): JSX.Element {
   const [username, setUsername] = useState<string>('');
@@ -17,6 +18,8 @@ export default function Register(): JSX.Element {
   const [hasError, setHasError] = useState<boolean>(false);
   const [user, setUser] = useState();
   const navigate = useNavigate();
+  const [setStoreUsername] = useLocalStorage('username', 'set');
+  const [setLoggedIn] = useLocalStorage('keepLoggedin', 'set');
 
   useEffect(() => {
     if (isLoading && !user) {
@@ -45,7 +48,8 @@ export default function Register(): JSX.Element {
         avatarColor,
         avatarImage,
       });
-      console.log(result);
+      setLoggedIn(true);
+      setStoreUsername(username);
       setUser(result.data.user);
       setHasError(false);
       setAlertType('alert-success');
