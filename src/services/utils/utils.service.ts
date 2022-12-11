@@ -1,4 +1,4 @@
-import { addUser } from '@/redux-toolkit/reducers/user/user.reducer';
+import { addUser, clearUser } from '@/redux-toolkit/reducers/user/user.reducer';
 import { avatarColors } from '@/services/utils/static.data';
 
 export class Utils {
@@ -40,5 +40,17 @@ export class Utils {
     pageReload(true);
     dispatch(addUser({ token: result.data.token, profile: result.data.user }));
     setUser(result.data.user);
+  }
+
+  static clearStore({
+    dispatch,
+    deleteStorageUsername,
+    deleteSessionPageReload,
+    setLoggedIn,
+  }: any) {
+    dispatch(clearUser());
+    deleteSessionPageReload();
+    deleteStorageUsername();
+    setLoggedIn(false);
   }
 }
